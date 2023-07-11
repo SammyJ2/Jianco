@@ -84,19 +84,6 @@ DATABASES = {
         'PASSWORD': 'HIj8$2$29:$&>>]?]’so87€!]’',
     }
 }
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'MIR',
-        'ENFORCE_SCHEMA': True,
-        'CLIENT': {
-            'host': 'mongodb://localhost:27017/',
-            'username': 'SammyJ',
-            'password': 'BveKo3mzTuZSTfOM',
-            'authMechanism': 'SCRAM-SHA-1',
-        }
-    }
-}
 
 
 # Password validation

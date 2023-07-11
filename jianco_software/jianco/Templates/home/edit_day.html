@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Day</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid black;
+            background-color: whitesmoke;
+            color: black;
+        }
+
+        button[type="submit"] {
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Day</h1>
+
+        <form method="post" action="{% url 'edit_day' %}">
+            {% csrf_token %}
+
+            <label for="day">Day:</label>
+            <input type="text" name="day" value="{{ day }}" required>
+
+            <br><br>
+            <button type="submit">Save</button>
+            <br><br>
+        </form>
+    </div>
+</body>
+</html>

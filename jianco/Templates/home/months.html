@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Months</title>
+    <style>
+        .dropdown {
+            margin-bottom: 20px;
+        }
+
+        .dropdown select {
+            width: 200px;
+            height: 30px;
+            font-size: 16px;
+        }
+
+        .table-container {
+            margin-bottom: 20px;
+        }
+
+        .table-container table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table-container th,
+        .table-container td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-container th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Months</h1>
+
+    {% if cleared_data_state %}
+        <p>Data has been cleared.</p>
+    {% endif %}
+
+    <div class="dropdown">
+        <select onchange="showTable(this)">
+            <option value="">Select a month</option>
+            {% for month in distinct_months %}
+                <option value="{{ month|date:'Y-m' }}">{{ month|date:'F Y' }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div id="tables-container">
+        {% for table in tables %}
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Day</th>
+                        <th>Start Inventory</th>
+                        <th>Gallons Delivered</th>
+                        <th>Gallons Pumped</th>
+                        <th>Book Inventory</th>
+                        <th>Inches</th>
+                        <th>Gallons</th>
+                        <th>Daily</th>
+                        <th>Initials</th>
+                        <th></th>
+                        <th>Regular</th>
+                        <th>Super</th>
+                        <th>Premium</th>
+                        <th>Start Inventory P</th>
+                        <th>Gallons Delivered P</th>
+                        <th>Gallons Pumped P</th>
+                        <th>Book Inventory P</th>
+                        <th>Inches P</th>
+                        <th>Gallons P</th>
+                        <th>Daily P</th>
+                        <th>Initials P</th>
+                    </tr>
+                    {% for row in table %}
+                        <tr>
+                            <td>{{ row.dayDay }}</td>
+                            <td>{{ row.start_inventory }}</td>
+                            <td>{{ row.gallons_delivered }}</td>
+                            <td>{{ row.gallons_pumped }}</td>
+                            <td>{{ row.book_inventory }}</td>
+                            <td>{{ row.inches }}</td>
+                            <td>{{ row.gallons }}</td>
+                            <td>{{ row.daily }}</td>
+                            <td>{{ row.initials }}</td>
+                            <td>{{ row.number }}</td>
+                            <td>{{ row.regular }}</td>
+                            <td>{{ row.super }}</td>
+                            <td>{{ row.premium }}</td>
+                            <td>{{ row.start_inventory_p }}</td>
+                            <td>{{ row.gallons_delivered_p }}</td>
+                            <td>{{ row.gallons_pumped_p }}</td>
+                            <td>{{ row.book_inventory_p }}</td>
+                            <td>{{ row.inches_p }}</td>
+                            <td>{{ row.gallons_p }}</td>
+                            <td>{{ row.Dailyy }}</td>
+                            <td>{{ row.initials_p }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function showTable(selectElement) {
+            var selectedMonth = selectElement.value;
+            var tablesContainer = document.getElementById('tables-container');
+            var tables = tablesContainer.getElementsByClassName('table-container');
+
+            for (var i = 0; i < tables.length; i++) {
+                tables[i].style.display = 'none';
+            }
+
+            if (selectedMonth) {
+                var selectedTable = document.getElementById('table-' + selectedMonth);
+                selectedTable.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
